@@ -1,4 +1,4 @@
-// src/registroSolicitante.js
+import { API_BASE_URL } from "./config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       
       try {
-        const respuesta = await fetch("http://localhost:3000/api/solicitudes", {
+        const respuesta = await fetch(`${API_BASE_URL}/solicitudes`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

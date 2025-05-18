@@ -1,8 +1,10 @@
+import { API_BASE_URL } from "./config.js";
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const [donantes, solicitantes] = await Promise.all([
-      fetch("http://localhost:3000/api/donantes").then(r => r.json()),
-      fetch("http://localhost:3000/api/solicitudes").then(r => r.json())
+      fetch(`${API_BASE_URL}/donantes`).then(r => r.json()),
+      fetch(`${API_BASE_URL}/solicitudes`).then(r => r.json())
     ]);
 
     // grafico torta - Tipos de sangre
