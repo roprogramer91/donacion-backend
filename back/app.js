@@ -11,7 +11,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
 
-// Rutas (se agregan después)
+// Rutas
 app.get('/', (req, res) => {
   res.send('Servidor funcionando 🚀');
 });
