@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio - Donación de Sangre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+ 
+    <main class="main">
+      <h1>INICIO</h1>
+
+      <section class="opciones">
+        <a href="/src/registroDonante.html" class="boton donante">Soy donante</a>
+        <a href="/src/registroSolicitante.html" class="boton solicitante">Soy solicitante</a>
+      </section>
+
+      <hr class="separador" />
+
+      <section class="educativa">
+        <a href="/src/educacion.html" class="boton educativo">Sección educativa</a>
+        <p>Sobre donación de sangre</p>
+      </section>
+
+      <!-- Canvas para los gráficos -->
+      <section class="estadisticas">
+        <h2>Estadísticas Generales</h2>
+        <div class="grid-estadisticas">
+          <div class="columna-izquierda">
+            <div class="grafico-box"><canvas id="graficoTotales"></canvas></div>
+            <div class="grafico-box"><canvas id="graficoEdades"></canvas></div>
+          </div>
+          <div class="columna-derecha">
+            <div class="grafico-box"><canvas id="graficoTipoSangre"></canvas></div>
+          </div>
+        </div>
+      </section>
+
+
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="./src/estadisticas.js"></script>
+   
+
+  </body>
+</html>

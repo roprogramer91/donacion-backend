@@ -1,0 +1,155 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #1e1e1e; /* Gris oscuro legible */
+  background-color: #fff; /* Fondo blanco o el que estés usando */
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #5a0000;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.opciones {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.boton {
+  display: inline-block;
+  text-decoration: none; /* quita subrayado */
+  color: white;
+  background-color: #8b0000;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+  background-color: #a30000;
+}
+
+
+.separador {
+  width: 30%;
+  border: none;
+  height: 2px;
+  background-color: #a52a2a;
+}
+
+.educativa {
+  background-color: #fff3f3;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.educativa h2 {
+  color: #5a0000;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.educativa p {
+  color: #555;
+  font-size: 1rem;
+}
+
+.estadisticas {
+  background-color: #fafafa;
+  border-radius: 10px;
+  padding: 30px 40px;
+  margin: 40px auto;
+  max-width: 800px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.estadisticas h2 {
+  color: #5a0b0b;
+  margin-bottom: 25px;
+  font-size: 26px;
+}
+
+.estadisticas canvas {
+  margin: 30px auto;
+  max-width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.chart-container {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+
+.graficos-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.grid-estadisticas {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.columna-izquierda,
+.columna-derecha {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.grafico-box {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  min-width: 280px;
+}
+
+/* Responsive  */
+@media screen and (max-width: 768px) {
+  .grid-estadisticas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .columna-izquierda,
+  .columna-derecha {
+    width: 100%;
+    align-items: center;
+  }
+
+  .grafico-box {
+    max-width: 100%;
+  }
+}
