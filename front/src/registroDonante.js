@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       dni,
       edad,
       peso,
-      grupo_sanguineo: form.grupo.value,
+      grupoSanguineo: form.grupo.value.trim(),
       enfermedades: form.enfermedades.value.trim()
     };
 

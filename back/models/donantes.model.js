@@ -19,7 +19,7 @@ const guardar = async (nuevo) => {
       nuevo.dni,
       nuevo.edad,
       nuevo.peso,
-      nuevo.grupo_Sanguineo,
+      nuevo.grupoSanguineo,
       nuevo.enfermedades || '',
       fecha
     ]
