@@ -13,7 +13,7 @@ const obtenerSolicitudes = async (req, res) => {
 const crearSolicitud = async (req, res) => {
   const nuevaSolicitud = req.body;
 
-  // Validaciones 
+  // Validaciones
   if (!nuevaSolicitud.dni || !nuevaSolicitud.paciente || !nuevaSolicitud.grupoSanguineo) {
     return res.status(400).json({ error: 'Faltan datos obligatorios' });
   }
@@ -22,6 +22,11 @@ const crearSolicitud = async (req, res) => {
     await Solicitud.guardar(nuevaSolicitud);
     res.status(201).json({ mensaje: 'Solicitud registrada exitosamente' });
   } catch (error) {
+    // Detectar error de entrada duplicada
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(400).json({ error: 'Ya existe una solicitud con ese DNI.' });
+    }
+
     console.error('Error al guardar solicitud:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
