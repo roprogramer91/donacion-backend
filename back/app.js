@@ -16,6 +16,19 @@ app.get('/', (req, res) => {
   res.send('Servidor funcionando 🚀');
 });
 
+//TEST DE CONEXIÓN A LA BASE DE DATOS
+// Este endpoint es solo para verificar la conexión a la base de datos
+app.get('/api/test-db', async (req, res) => {
+  try {
+    const [rows] = await require('./data/config').query('SELECT 1 + 1 AS resultado');
+    res.json({ mensaje: 'Conexión exitosa ✅', resultado: rows[0].resultado });
+  } catch (error) {
+    console.error('❌ Error al conectar con la base de datos:', error);
+    res.status(500).json({ error: 'No se pudo conectar a la base de datos' });
+  }
+});
+
+
 //routes
 app.use('/api/donantes', donantesRoutes);
 app.use('/api/solicitudes', solicitudesRoutes);
