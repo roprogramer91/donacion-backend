@@ -2,7 +2,7 @@ const db = require('../data/config');
 
 // Obtener todos los donantes
 const obtenerTodos = async () => {
-  const [rows] = await db.query('SELECT * FROM donantes ORDER BY fechaRegistro DESC');
+  const [rows] = await db.query('SELECT * FROM donantes ORDER BY fecha_Registro DESC');
   return rows;
 };
 

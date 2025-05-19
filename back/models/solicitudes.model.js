@@ -2,7 +2,7 @@ const db = require('../data/config');
 
 // Obtener todas las solicitudes
 const obtenerTodas = async () => {
-  const [rows] = await db.query('SELECT * FROM solicitudes ORDER BY fechaSolicitud DESC');
+  const [rows] = await db.query('SELECT * FROM solicitudes ORDER BY fecha_Solicitud DESC');
   return rows;
 };
 
