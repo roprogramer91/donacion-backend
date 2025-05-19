@@ -13,8 +13,8 @@ const obtenerSolicitudes = async (req, res) => {
 const crearSolicitud = async (req, res) => {
   const nuevaSolicitud = req.body;
 
-  // Validaciones básicas opcionales (pueden mejorarse luego)
-  if (!nuevaSolicitud.dni || !nuevaSolicitud.paciente || !nuevaSolicitud.grupo_Sanguineo) {
+  // Validaciones 
+  if (!nuevaSolicitud.dni || !nuevaSolicitud.paciente || !nuevaSolicitud.grupoSanguineo) {
     return res.status(400).json({ error: 'Faltan datos obligatorios' });
   }
 
