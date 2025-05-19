@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 // Rutas
-app.get('/', (req, res) => {
+app.get('/back', (req, res) => {
   res.send('Servidor funcionando 🚀');
 });
 
