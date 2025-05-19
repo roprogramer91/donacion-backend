@@ -8,7 +8,7 @@ const obtenerTodos = async () => {
 
 // Guardar un nuevo donante
 const guardar = async (nuevo) => {
-  const fecha = new Date().toISOString().slice(0, 19).replace('T', ' '); // Formato DATETIME
+  const fecha = new Date().toISOString().slice(0, 19).replace('T', ' '); 
 
   const [result] = await db.query(
     `INSERT INTO donantes (nombre, apellido, dni, edad, peso, grupo_sanguineo, enfermedades, fechaRegistro)
@@ -19,7 +19,7 @@ const guardar = async (nuevo) => {
       nuevo.dni,
       nuevo.edad,
       nuevo.peso,
-      nuevo.grupoSanguineo,
+      nuevo.grupo_Sanguineo,
       nuevo.enfermedades || '',
       fecha
     ]
