@@ -1,33 +1,35 @@
-const fs = require('fs').promises;
-const path = require('path');
+const db = require('../data/config');
 
-const archivo = path.join(__dirname, '../data/solicitudes.json');
-
+// Obtener todas las solicitudes
 const obtenerTodas = async () => {
-  const data = await fs.readFile(archivo, 'utf8');
-  return JSON.parse(data);
+  const [rows] = await db.query('SELECT * FROM solicitudes ORDER BY fechaSolicitud DESC');
+  return rows;
 };
 
+// Guardar una nueva solicitud
 const guardar = async (nueva) => {
-  const solicitudes = await obtenerTodas();
+  const fecha = new Date().toISOString().slice(0, 19).replace('T', ' '); // formato DATETIME
 
-  const nuevaSolicitud = {
-    id: solicitudes.length + 1,
-   nombre: nueva.nombre,
-    apellido: nueva.apellido,
-    dni: nueva.dni,
-    edad: parseInt(nueva.edad),
-    paciente: nueva.paciente,
-    grupoSanguineo: nueva.grupoSanguineo,
-    hospital: nueva.hospital,
-    direccion: nueva.direccion,
-    nivelUrgencia: nueva.nivelUrgencia,
-    motivo: nueva.motivo,
-    fechaSolicitud: new Date().toISOString()
-  };
+  const [result] = await db.query(
+    `INSERT INTO solicitudes 
+     (nombre, apellido, dni, edad, paciente, grupoSanguineo, hospital, direccion, nivelUrgencia, motivo, fechaSolicitud)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
+      nueva.nombre,
+      nueva.apellido,
+      nueva.dni,
+      parseInt(nueva.edad),
+      nueva.paciente,
+      nueva.grupoSanguineo,
+      nueva.hospital,
+      nueva.direccion,
+      nueva.nivelUrgencia,
+      nueva.motivo,
+      fecha
+    ]
+  );
 
-  solicitudes.push(nuevaSolicitud);
-  await fs.writeFile(archivo, JSON.stringify(solicitudes, null, 2));
+  return result;
 };
 
 module.exports = {

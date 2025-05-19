@@ -1,30 +1,31 @@
-const fs = require('fs').promises;
-const path = require('path');
+const db = require('../data/config');
 
-const archivo = path.join(__dirname, '../data/donantes.json');
-
+// Obtener todos los donantes
 const obtenerTodos = async () => {
-  const data = await fs.readFile(archivo, 'utf8');
-  return JSON.parse(data);
+  const [rows] = await db.query('SELECT * FROM donantes ORDER BY fechaRegistro DESC');
+  return rows;
 };
 
+// Guardar un nuevo donante
 const guardar = async (nuevo) => {
-  const donantes = await obtenerTodos();
+  const fecha = new Date().toISOString().slice(0, 19).replace('T', ' '); // Formato DATETIME
 
-  const nuevoDonante = {
-    id: donantes.length + 1,
-    nombre: nuevo.nombre,
-    apellido: nuevo.apellido,
-    dni: nuevo.dni,
-    edad: nuevo.edad,
-    peso: nuevo.peso,
-    grupoSanguineo: nuevo.grupoSanguineo,
-    enfermedades: nuevo.enfermedades,
-    fechaRegistro: new Date().toISOString()
-  };
+  const [result] = await db.query(
+    `INSERT INTO donantes (nombre, apellido, dni, edad, peso, grupoSanguineo, enfermedades, fechaRegistro)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
+      nuevo.nombre,
+      nuevo.apellido,
+      nuevo.dni,
+      nuevo.edad,
+      nuevo.peso,
+      nuevo.grupoSanguineo,
+      nuevo.enfermedades || '',
+      fecha
+    ]
+  );
 
-  donantes.push(nuevoDonante);
-  await fs.writeFile(archivo, JSON.stringify(donantes, null, 2));
+  return result;
 };
 
 module.exports = {
