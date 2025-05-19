@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const app = express();
 const donantesRoutes = require('./routes/donantes.routes');
 const solicitudesRoutes = require('./routes/solicitudes.routes');
+const pool = require('./data/config');
 
 // Middlewares
 app.use(morgan('dev'));
@@ -20,10 +21,10 @@ app.get('/', (req, res) => {
 // Este endpoint es solo para verificar la conexión a la base de datos
 app.get('/api/test-db', async (req, res) => {
   try {
-    const [rows] = await require('./data/config').query('SELECT 1 + 1 AS resultado');
-    res.json({ mensaje: 'Conexión exitosa ✅', resultado: rows[0].resultado });
+    const [result] = await pool.query('SELECT 1 + 1 AS resultado');
+    res.json({ ok: true, resultado: result[0].resultado });
   } catch (error) {
-    console.error('❌ Error al conectar con la base de datos:', error);
+    console.error('❌ Error al conectar a la base de datos:', error);
     res.status(500).json({ error: 'No se pudo conectar a la base de datos' });
   }
 });
