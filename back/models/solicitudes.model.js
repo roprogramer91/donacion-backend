@@ -12,7 +12,7 @@ const guardar = async (nueva) => {
 
   const [result] = await db.query(
     `INSERT INTO solicitudes 
-     (nombre, apellido, dni, edad, paciente, grupo_sanguineo, hospital, direccion, nivelUrgencia, motivo, fechaSolicitud)
+     (nombre, apellido, dni, edad, paciente, grupo_sanguineo, hospital, direccion, nivel_urgencia, motivo, fecha_solicitud)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       nueva.nombre,
