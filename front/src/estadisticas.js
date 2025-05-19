@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // grafico torta - Tipos de sangre
     const sangreContador = {};
     donantes.forEach(d => {
-      sangreContador[d.grupoSanguineo] = (sangreContador[d.grupoSanguineo] || 0) + 1;
+      sangreContador[d.grupo_Sanguineo] = (sangreContador[d.grupo_Sanguineo] || 0) + 1;
     });
 
     new Chart(document.getElementById("graficoTipoSangre"), {
