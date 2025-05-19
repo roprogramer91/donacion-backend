@@ -11,7 +11,7 @@ const guardar = async (nuevo) => {
   const fecha = new Date().toISOString().slice(0, 19).replace('T', ' '); 
 
   const [result] = await db.query(
-    `INSERT INTO donantes (nombre, apellido, dni, edad, peso, grupo_sanguineo, enfermedades, fechaRegistro)
+    `INSERT INTO donantes (nombre, apellido, dni, edad, peso, grupo_sanguineo, enfermedades, fecha_Registro)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       nuevo.nombre,
