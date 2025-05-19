@@ -12,18 +12,32 @@ const crearDonante = async (req, res) => {
     return res.status(400).json({ error: 'Edad inválida.' });
   }
 
- if (!validarGrupo(nuevoDonante.grupoSanguineo)) {
+  if (!validarGrupo(nuevoDonante.grupoSanguineo)) {
     return res.status(400).json({ error: 'Grupo sanguíneo inválido.' });
   }
 
-  await Donante.guardar(nuevoDonante);
-  res.status(201).json({ mensaje: 'Donante agregado exitosamente' });
+  try {
+    await Donante.guardar(nuevoDonante);
+    res.status(201).json({ mensaje: 'Donante agregado exitosamente' });
+  } catch (error) {
+    // Capturar error de duplicado de DNI
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(400).json({ error: 'Ya existe un donante con ese DNI.' });
+    }
+
+    console.error('Error al guardar donante:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
 };
 
-
 const obtenerDonantes = async (req, res) => {
-  const donantes = await Donante.obtenerTodos();
-  res.json(donantes);
+  try {
+    const donantes = await Donante.obtenerTodos();
+    res.json(donantes);
+  } catch (error) {
+    console.error('Error al obtener donantes:', error);
+    res.status(500).json({ error: 'Error al obtener donantes' });
+  }
 };
 
 module.exports = {
