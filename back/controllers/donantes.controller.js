@@ -12,7 +12,7 @@ const crearDonante = async (req, res) => {
     return res.status(400).json({ error: 'Edad inválida.' });
   }
 
-  if (!validarGrupo(nuevoDonante.grupoSanguineo)) {
+  if (!validarGrupo(nuevoDonante.grupo_Sanguineo)) {
     return res.status(400).json({ error: 'Grupo sanguíneo inválido.' });
   }
 
