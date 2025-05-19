@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <h1>Donación de Sangre</h1>
     <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>    
     <ul>
-      <li><a href="index.html">Inicio</a></li>
+      <li><a href="/">Inicio</a></li>
       <li><a href="registroDonante.html">Soy donante</a></li>
       <li><a href="registroSolicitante.html">Soy solicitante</a></li>
       <li><a href="educacion.html">Educación</a></li>
