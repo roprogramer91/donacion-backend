@@ -8,11 +8,9 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false }
 });
 
-// Endpoint para testear la conexión
-router.get('/test-db', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const result = await pool.query('SELECT NOW() AS ahora');
-    console.log('✅ Conexión exitosa. Fecha actual del servidor:', result.rows[0].ahora);
     res.json({ status: 'Conexión exitosa', ahora: result.rows[0].ahora });
   } catch (error) {
     console.error('❌ Error al conectar a la base de datos:', error.message);
